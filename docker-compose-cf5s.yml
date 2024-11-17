@@ -2,8 +2,5 @@ services:
   cf5s:
     image: dairoot/cf5s:latest
     restart: always
-
-    env_file:
-      - .env
     environment:
       - CHATGPT_GATEWAY_URL=http://chat2api:5005/${API_PREFIX:-}
