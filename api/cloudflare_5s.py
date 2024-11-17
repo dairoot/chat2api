@@ -1,6 +1,7 @@
 from fastapi import Request
 
 import utils.globals as globals
+from utils.configs import proxy_url_list
 from app import app
 from utils import generate_md5, cache
 from utils.configs import api_prefix
@@ -23,8 +24,7 @@ async def set_cf_cookie(request: Request):
 @app.get(f"/{api_prefix}/api/get-cf-list" if api_prefix else "/api/get-cf-list")
 async def get_cf_list(request: Request):
     user_agent_list = [i["user-agent"] for i in globals.fp_map.values()]
-    proxy_url_pool = [""]
-
+    proxy_url_pool = proxy_url_list + [""]
     result = {
         "exist_data_list": [],
         "need_update": {
